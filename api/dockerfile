@@ -3,14 +3,12 @@ FROM node:20 AS builder
 WORKDIR /app
 
 COPY package*.json ./
-COPY prisma ./prisma
 RUN npm install
 
 COPY tsconfig.json ./
 COPY src ./src
 
-# Gera o client do Prisma e compila o TS
-RUN npm run prisma:generate
+# Compila TypeScript
 RUN npm run build
 
 # Etapa 2 — Runtime
@@ -22,7 +20,6 @@ RUN npm install --only=production
 
 # Copia os arquivos compilados
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/prisma ./prisma
 
 EXPOSE 3000
 

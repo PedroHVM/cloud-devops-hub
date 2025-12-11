@@ -15,7 +15,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Trash2, Edit, CheckCircle2, Circle, Clock, Filter, Search } from "lucide-react";
+import { Plus, Trash2, Edit, CheckCircle2, Circle, Clock, Search } from "lucide-react";
 
 interface Task {
   id: string;
@@ -217,12 +217,6 @@ const Dashboard = () => {
     }
   };
 
-  const resetFilters = () => {
-    setSearchTerm("");
-    setStatusFilter("all");
-    setPriorityFilter("all");
-  };
-
   const handleEditClick = (task: Task) => {
     setEditingTask(task);
     setIsEditingOpen(true);
@@ -281,16 +275,6 @@ const Dashboard = () => {
               Acompanhe o progresso do time com métricas em tempo real, filtros inteligentes e um quadro visual
               inspirado em metodologias ágeis.
             </p>
-          </div>
-          <div className="flex gap-3">
-            <Button variant="outline" onClick={resetFilters}>
-              <Filter className="w-4 h-4 mr-2" />
-              Limpar filtros
-            </Button>
-            <Button onClick={() => setEditingTask(null)}>
-              <Plus className="w-4 h-4 mr-2" />
-              Nova tarefa
-            </Button>
           </div>
         </header>
 
